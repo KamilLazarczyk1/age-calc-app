@@ -37,7 +37,7 @@ Users should be able to:
 
 ### Links
 
-- [Live Site URL](https://kamillazarczyk1.github.io/age-calculator-app/)
+- [Live Site URL](https://kamillazarczyk1.github.io/age-calc-app/)
 
 ## My process
 
