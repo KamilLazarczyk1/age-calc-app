@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,700;1,400;1,800&display=swap')
+$purple: hsl(259, 100%, 65%)
+$lightRed: hsl(0, 100%, 67%)
+$white: hsl(0, 0%, 100%)
+$offWhite: hsl(0, 0%, 94%)
+$lightGrey: hsl(0, 0%, 86%)
+$smokeyGrey: hsl(0, 1%, 44%)
+$offBlack: hsl(0, 0%, 8%)
+$fontSizeInputs: 32px //too big? maybe good for desktop
+
+main
+    width: 300px
+    min-height: 300px
+    padding: 50px 20px
+    font-family: Poppins
+    background-color: $white
+    border-radius: 20px 20px 120px 20px
+    .formSection
+        width: 100%
+        form
+            display: flex
+            column-gap: 10px
+            div
+                flex-grow: 1
+                label
+                    font-size: 12px
+                    letter-spacing: 5px
+                    color: $smokeyGrey
+                input[type=number]
+                    height: 30px
+                    width: 70px
+                    padding: 10px
+                    font:
+                        weight: 800
+                        size: 18px
+                    border: 1px $lightGrey solid
+                    border-radius: 5px
+                input[type=number]:hover
+                    cursor: pointer
+                .inputError
+                    display: none
+                    position: absolute
+                    color: $lightRed
+                    margin-top: 5px
+                    font:
+                        weight: 400
+                        style: italic
+                        size: 9px
+    div.separator
+        height: 60px
+        width: 100%
+        padding: 30px 0
+        hr
+            border: 1px solid $offWhite
+        button
+            transition: 0.3s // for hover effects
+            width: 60px
+            height: 60px
+            background-color: $purple
+            border: 0
+            border-radius: 50px
+            img
+                width: 45%
+        button, hr
+            position: relative
+            top: 50%  
+            left: 50% 
+            transform: translate(-50%, -50%)
+        button:hover
+            background-color: $offBlack
+            cursor: pointer 
+    section.resultSection  
+        line-height: 50px  
+        font:
+            weight: 800
+            size: 44px
+            style: italic
+        span.resultNumber
+            color: $purple
+@media screen and (min-width: 800px)
+    main
+        padding: 50px 40px
+        width: 500px
+        .formSection
+            width: 350px
+            form
+                column-gap: 10px
+                input[type=number]
+                    width: 75% !important
+                    font-size: 20px !important
+        div.separator
+            height: 10px
+            button  
+                left: 95% 
+                transform: translate(-50%, -50%)
+        section.resultSection
+            line-height: 70px
+            font:
+                size: 66px
