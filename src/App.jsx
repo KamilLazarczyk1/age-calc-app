@@ -6,6 +6,7 @@ import { DateTime } from 'luxon'
 function App() {
 
   const currentDate = DateTime.now();
+  //console.log(currentDate);
   const [inputs, setInputs] = useState({ day: '', month: '', year: '' });
   const [finalYears, setFinalYears] = useState('--');
   const [finalMonths, setFinalMonths] = useState('--');
@@ -60,7 +61,7 @@ function App() {
       changeInputColorToRed();
       checkForError = true;
     }
-    if (inputDate.invalid !== null) {
+    if (inputDate.invalid !== null || currentDate.diff(inputDate) < 0) {
       changeInputColorToRed();
       checkForError = true;
       let validCheck = false;
@@ -74,12 +75,12 @@ function App() {
         document.querySelector(`p#inputErrorMonth`).style.display = "block";
         validCheck = true;
       }
-      if (inputs.year > currentDate.year) {
+      if ((currentDate.diff(inputDate) < 0 || year > currentDate.year) && inputs.year != '') {
         document.querySelector(`p#inputErrorYear`).innerText = "Must be in the past";
         document.querySelector(`p#inputErrorYear`).style.display = "block";
         validCheck = true;
       }
-      if (validCheck = true && inputs.day !== "" && inputs.month !== "" && inputs.year !== "") {
+      if (validCheck == false && inputs.day !== "" && inputs.month !== "" && inputs.year !== "") {
         document.querySelector(`p#inputErrorDay`).innerText = "Must be a valid date";
         document.querySelector(`p#inputErrorDay`).style.display = "block";
       }
@@ -88,11 +89,12 @@ function App() {
       return;
     }
     //console.log(inputDate)
-    let difference = currentDate.minus({ years: inputDate.year, months: inputDate.month, days: inputDate.day });
+    let difference = currentDate.diff(inputDate, ['years', 'months', 'days']).toObject();
+
     //console.log(difference)
-    setFinalYears(difference.year);
-    setFinalMonths(difference.month);
-    setFinalDays(difference.day);
+    setFinalYears(difference.years);
+    setFinalMonths(difference.months);
+    setFinalDays(Math.floor(difference.days));
   }
   return (
     <main>
